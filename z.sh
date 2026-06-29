@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 # =============================================================================
-# GPT-OSS 120B Installation Script
+# GPT-OSS 120B Installation Script (NVIDIA GPU Optimized)
 # =============================================================================
-# This script automates the deployment of GPT-OSS 120B using vLLM on a system
-# equipped with NVIDIA GPU support.
+# This script deploys GPT-OSS 120B using vLLM with full NVIDIA GPU support.
 #
-# Prerequisites:
-#   - Ubuntu/Debian-based system
-#   - NVIDIA GPU with drivers installed
+# Requirements:
+#   - Ubuntu/Debian-based Linux
+#   - NVIDIA GPU with latest drivers installed
 #   - Root privileges
 # =============================================================================
 
@@ -17,8 +16,8 @@ export DEBIAN_FRONTEND=noninteractive
 
 # Configuration
 APP_DIR="/opt/gptoss"
-MODEL="openai/gpt-oss-120b"
 SERVICE_NAME="gptoss"
+MODEL="openai/gpt-oss-120b"
 
 log() {
     echo "[$(date '+%F %T')] $*"
@@ -26,13 +25,24 @@ log() {
 
 require_root() {
     if [[ $EUID -ne 0 ]]; then
-        echo "Error: This script must be run as root." >&2
+        echo "Error: This script must be executed as root." >&2
         exit 1
     fi
 }
 
+detect_gpu() {
+    log "Detecting NVIDIA GPU..."
+    if ! command -v nvidia-smi >/dev/null 2>&1; then
+        log "Error: NVIDIA GPU not detected (nvidia-smi not found)." >&2
+        log "Please install NVIDIA drivers first." >&2
+        exit 1
+    fi
+
+    nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
+}
+
 install_packages() {
-    log "Updating package index and installing dependencies..."
+    log "Installing system dependencies..."
     apt-get update -qq
     apt-get install -y \
         curl \
@@ -53,25 +63,24 @@ install_docker() {
         return 0
     fi
 
-    log "Installing Docker..."
+    log "Installing Docker Engine..."
     curl -fsSL https://get.docker.com | bash
     systemctl enable --now docker
 }
 
 install_nvidia_runtime() {
-    if ! command -v nvidia-smi >/dev/null 2>&1; then
-        log "Error: NVIDIA GPU not detected. nvidia-smi command not found." >&2
-        exit 1
-    fi
-
     log "Installing NVIDIA Container Toolkit..."
     apt-get install -y nvidia-container-toolkit
+
+    log "Configuring Docker for NVIDIA runtime..."
     nvidia-ctk runtime configure --runtime=docker
+
     systemctl restart docker
+    log "NVIDIA GPU support enabled for Docker."
 }
 
 configure_firewall() {
-    log "Configuring UFW firewall..."
+    log "Configuring firewall (UFW)..."
     ufw default deny incoming
     ufw default allow outgoing
     ufw allow 22/tcp
@@ -80,7 +89,8 @@ configure_firewall() {
 }
 
 create_stack() {
-    log "Creating application directory and docker-compose.yml..."
+    log "Creating application directory and docker-compose configuration..."
+
     mkdir -p "${APP_DIR}"
 
     cat > "${APP_DIR}/docker-compose.yml" <<'EOF'
@@ -100,11 +110,14 @@ services:
       --gpu-memory-utilization 0.95
       --max-model-len 131072
       --tensor-parallel-size 1
+      --enforce-eager
     deploy:
       resources:
         reservations:
           devices:
-            - capabilities: [gpu]
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
     volumes:
       - model_cache:/root/.cache/huggingface
 
@@ -119,7 +132,6 @@ create_env() {
 HF_TOKEN=
 EOF
     chmod 600 "${APP_DIR}/.env"
-    log "Please edit ${APP_DIR}/.env and add your Hugging Face token before starting the service."
 }
 
 create_service() {
@@ -127,7 +139,7 @@ create_service() {
 
     cat > "/etc/systemd/system/${SERVICE_NAME}.service" <<EOF
 [Unit]
-Description=GPT-OSS 120B Service
+Description=GPT-OSS 120B (vLLM GPU)
 After=docker.service
 Requires=docker.service
 
@@ -148,27 +160,28 @@ EOF
 }
 
 start_stack() {
-    log "Starting GPT-OSS stack..."
+    log "Pulling and starting GPU-accelerated stack..."
     cd "${APP_DIR}"
     docker compose pull
     docker compose up -d
 }
 
 healthcheck() {
-    log "Performing health check..."
-    sleep 20
-    if curl -s http://127.0.0.1:8000/v1/models > /dev/null; then
-        log "Service appears to be healthy."
+    log "Running health check..."
+    sleep 25
+    if curl -s --max-time 10 http://127.0.0.1:8000/v1/models > /dev/null; then
+        log "Service is responding."
     else
-        log "Warning: Health check did not receive a successful response."
+        log "Warning: Health check did not receive immediate response (model may still be loading)."
     fi
 }
 
 main() {
     require_root
 
-    log "Starting GPT-OSS 120B installation..."
+    log "=== GPT-OSS 120B Installation (NVIDIA GPU) ==="
 
+    detect_gpu
     install_packages
     install_docker
     install_nvidia_runtime
@@ -181,12 +194,13 @@ main() {
 
     log "================================================================"
     log "Installation completed successfully."
-    log "API Endpoint: http://127.0.0.1:8000/v1"
+    log "API Endpoint: http://YOUR_SERVER_IP:8000/v1"
     log ""
-    log "Next steps:"
-    log "1. Add your Hugging Face token to ${APP_DIR}/.env"
-    log "2. Restart the service: systemctl restart ${SERVICE_NAME}"
+    log "Important next steps:"
+    log "1. Edit ${APP_DIR}/.env and insert your Hugging Face token"
+    log "2. Restart service: systemctl restart ${SERVICE_NAME}"
     log "3. Monitor logs: journalctl -u ${SERVICE_NAME} -f"
+    log "4. GPU usage: nvidia-smi"
     log "================================================================"
 }
 
