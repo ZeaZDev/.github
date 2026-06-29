@@ -1,23 +1,14 @@
 #!/usr/bin/env bash
 # =============================================================================
-# GPT-OSS 120B Installation Script (NVIDIA GPU Optimized)
-# =============================================================================
-# This script deploys GPT-OSS 120B using vLLM with full NVIDIA GPU support.
-#
-# Requirements:
-#   - Ubuntu/Debian-based Linux
-#   - NVIDIA GPU with latest drivers installed
-#   - Root privileges
+# Automated Ollama Installer for AMD Ryzen 5 3400G
+# Optimized for CPU + Integrated Graphics
 # =============================================================================
 
 set -Eeuo pipefail
 
 export DEBIAN_FRONTEND=noninteractive
-
-# Configuration
-APP_DIR="/opt/gptoss"
-SERVICE_NAME="gptoss"
-MODEL="openai/gpt-oss-120b"
+APP_DIR="/opt/ollama"
+SERVICE_NAME="ollama"
 
 log() {
     echo "[$(date '+%F %T')] $*"
@@ -25,20 +16,9 @@ log() {
 
 require_root() {
     if [[ $EUID -ne 0 ]]; then
-        echo "Error: This script must be executed as root." >&2
+        echo "Error: This script must be run as root." >&2
         exit 1
     fi
-}
-
-detect_gpu() {
-    log "Detecting NVIDIA GPU..."
-    if ! command -v nvidia-smi >/dev/null 2>&1; then
-        log "Error: NVIDIA GPU not detected (nvidia-smi not found)." >&2
-        log "Please install NVIDIA drivers first." >&2
-        exit 1
-    fi
-
-    nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
 }
 
 install_packages() {
@@ -48,159 +28,102 @@ install_packages() {
         curl \
         wget \
         git \
-        jq \
-        unzip \
         ca-certificates \
-        gnupg \
-        lsb-release \
         ufw \
         fail2ban
 }
 
-install_docker() {
-    if command -v docker >/dev/null 2>&1; then
-        log "Docker is already installed."
+install_ollama() {
+    if command -v ollama >/dev/null 2>&1; then
+        log "Ollama is already installed."
         return 0
     fi
 
-    log "Installing Docker Engine..."
-    curl -fsSL https://get.docker.com | bash
-    systemctl enable --now docker
-}
-
-install_nvidia_runtime() {
-    log "Installing NVIDIA Container Toolkit..."
-    apt-get install -y nvidia-container-toolkit
-
-    log "Configuring Docker for NVIDIA runtime..."
-    nvidia-ctk runtime configure --runtime=docker
-
-    systemctl restart docker
-    log "NVIDIA GPU support enabled for Docker."
+    log "Installing Ollama..."
+    curl -fsSL https://ollama.com/install.sh | sh
 }
 
 configure_firewall() {
-    log "Configuring firewall (UFW)..."
+    log "Configuring firewall..."
     ufw default deny incoming
     ufw default allow outgoing
     ufw allow 22/tcp
-    ufw allow 8000/tcp
+    ufw allow 11434/tcp
     ufw --force enable
 }
 
-create_stack() {
-    log "Creating application directory and docker-compose configuration..."
-
-    mkdir -p "${APP_DIR}"
-
-    cat > "${APP_DIR}/docker-compose.yml" <<'EOF'
-services:
-  gptoss:
-    image: vllm/vllm-openai:latest
-    container_name: gptoss120b
-    restart: unless-stopped
-    runtime: nvidia
-    ports:
-      - "8000:8000"
-    shm_size: "32gb"
-    environment:
-      - HUGGING_FACE_HUB_TOKEN=${HF_TOKEN}
-    command: >
-      --model openai/gpt-oss-120b
-      --gpu-memory-utilization 0.95
-      --max-model-len 131072
-      --tensor-parallel-size 1
-      --enforce-eager
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
-    volumes:
-      - model_cache:/root/.cache/huggingface
-
-volumes:
-  model_cache:
-EOF
-}
-
-create_env() {
-    log "Creating environment file..."
-    cat > "${APP_DIR}/.env" <<EOF
-HF_TOKEN=
-EOF
-    chmod 600 "${APP_DIR}/.env"
-}
-
 create_service() {
-    log "Creating systemd service..."
-
+    log "Creating systemd service for Ollama..."
+    
     cat > "/etc/systemd/system/${SERVICE_NAME}.service" <<EOF
 [Unit]
-Description=GPT-OSS 120B (vLLM GPU)
-After=docker.service
-Requires=docker.service
+Description=Ollama Service (AMD Ryzen 3400G)
+After=network.target
 
 [Service]
-Type=oneshot
-RemainAfterExit=yes
-WorkingDirectory=${APP_DIR}
-ExecStart=/usr/bin/docker compose up -d
-ExecStop=/usr/bin/docker compose down
-Restart=on-failure
+Type=simple
+User=root
+Environment="OLLAMA_HOST=0.0.0.0"
+Environment="OLLAMA_ORIGINS=*"
+ExecStart=/usr/local/bin/ollama serve
+Restart=always
+RestartSec=5
+LimitNOFILE=65536
 
 [Install]
 WantedBy=multi-user.target
 EOF
 
     systemctl daemon-reload
-    systemctl enable "${SERVICE_NAME}"
+    systemctl enable --now "${SERVICE_NAME}"
 }
 
-start_stack() {
-    log "Pulling and starting GPU-accelerated stack..."
-    cd "${APP_DIR}"
-    docker compose pull
-    docker compose up -d
+pull_models() {
+    log "Pulling recommended models for your hardware..."
+    log "This may take some time depending on your internet speed."
+
+    # Recommended models for Ryzen 5 3400G (practical sizes)
+    ollama pull llama3.2:3b     # Fastest
+    ollama pull phi4:3.8b       # Good balance
+    ollama pull gemma2:9b       # Higher quality (if RAM allows)
+    
+    log "Models pulled successfully."
 }
 
 healthcheck() {
-    log "Running health check..."
-    sleep 25
-    if curl -s --max-time 10 http://127.0.0.1:8000/v1/models > /dev/null; then
-        log "Service is responding."
+    log "Performing health check..."
+    sleep 8
+    if curl -s http://127.0.0.1:11434/api/tags > /dev/null; then
+        log "Ollama service is running successfully."
     else
-        log "Warning: Health check did not receive immediate response (model may still be loading)."
+        log "Warning: Health check incomplete."
     fi
 }
 
 main() {
     require_root
 
-    log "=== GPT-OSS 120B Installation (NVIDIA GPU) ==="
+    log "================================================================"
+    log "Starting Automated Ollama Installation for AMD Ryzen 5 3400G"
+    log "================================================================"
 
-    detect_gpu
     install_packages
-    install_docker
-    install_nvidia_runtime
+    install_ollama
     configure_firewall
-    create_stack
-    create_env
     create_service
-    start_stack
+    pull_models
     healthcheck
 
     log "================================================================"
-    log "Installation completed successfully."
-    log "API Endpoint: http://YOUR_SERVER_IP:8000/v1"
+    log "Installation Completed Successfully!"
     log ""
-    log "Important next steps:"
-    log "1. Edit ${APP_DIR}/.env and insert your Hugging Face token"
-    log "2. Restart service: systemctl restart ${SERVICE_NAME}"
-    log "3. Monitor logs: journalctl -u ${SERVICE_NAME} -f"
-    log "4. GPU usage: nvidia-smi"
+    log "Access your local AI at: http://YOUR_SERVER_IP:11434"
+    log ""
+    log "Useful commands:"
+    log "   ollama list                    → Show installed models"
+    log "   ollama run llama3.2:3b         → Chat with model"
+    log "   ollama ps                      → Show running models"
+    log "   systemctl status ollama        → Check service status"
     log "================================================================"
 }
 
