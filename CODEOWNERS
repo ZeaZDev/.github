@@ -1,0 +1,8 @@
+# Organization community-health repository ownership
+# Replace or extend this owner as ZeaZDev maintainer teams are established.
+* @cvsz
+
+/profile/ @cvsz
+/.github/ @cvsz
+/SECURITY.md @cvsz
+/GOVERNANCE.md @cvsz
