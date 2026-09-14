@@ -1,348 +1,224 @@
+<div align="center">
+
 # ZeaZDev
 
-> Building secure, automation-first software platforms, developer tooling, AI systems, and production infrastructure.
+### Secure systems · Intelligent automation · Production-minded engineering
 
-ZeaZDev is an engineering organization focused on designing and building practical software systems that can move from idea to production with strong foundations in **security, automation, reliability, maintainability, observability, and developer experience**.
+**Building dependable software platforms, AI and agentic systems, developer tooling, data foundations, and production infrastructure from idea to operations.**
 
-Our work spans application platforms, AI-assisted systems, developer tooling, infrastructure automation, distributed services, data systems, dashboards, internal platforms, and reusable engineering foundations.
+[Organization](https://github.com/ZeaZDev) · [Repositories](https://github.com/orgs/ZeaZDev/repositories) · [Issues](https://github.com/search?q=org%3AZeaZDev+is%3Aissue&type=issues) · [Pull Requests](https://github.com/search?q=org%3AZeaZDev+is%3Apr&type=pullrequests)
+
+</div>
 
 ---
 
+## About ZeaZDev
+
+ZeaZDev is an engineering organization focused on practical, secure, automation-first software that can move from an idea to a maintainable production system without treating security, testing, operations, documentation, or recovery as afterthoughts.
+
+Our scope includes application platforms, APIs, AI-assisted and agentic systems, developer tooling, distributed services, data systems, dashboards, internal platforms, infrastructure automation, CI/CD, security engineering, observability, and reusable engineering foundations.
+
+We optimize for **clarity, evidence, bounded delivery, secure defaults, reproducibility, operability, and long-term maintainability** rather than complexity for its own sake.
+
 ## Mission
 
-Our mission is to create software that is:
+Our mission is to create systems that are useful by default, secure by design, automation first, production oriented, composable, observable, developer friendly, and able to evolve without unnecessary rewrites.
 
-- **Useful by default** — clear purpose, practical workflows, and sensible defaults.
-- **Secure by design** — explicit trust boundaries, least privilege, defense in depth, and fail-closed behavior where appropriate.
-- **Automation first** — repeatable build, test, release, deployment, maintenance, and recovery workflows.
-- **Production oriented** — observability, resilience, rollback paths, operational controls, and documented ownership.
-- **Composable** — reusable components, APIs, packages, services, and infrastructure modules.
-- **Developer friendly** — predictable local development, strong documentation, reproducible environments, and fast feedback loops.
-- **Open to evolution** — architectures that can grow without forcing unnecessary rewrites.
+A successful ZeaZDev system should make it easier to answer four questions: **What does it do? Why can we trust it? How do we operate it? How do we safely change it?**
 
 ---
 
 ## What We Build
 
-### AI & Agentic Systems
+| Domain | Focus |
+| --- | --- |
+| **AI & Agentic Systems** | agent orchestration, tool execution, RAG, model abstraction, context/memory, evaluation, guardrails, AI-assisted engineering |
+| **Application Platforms** | APIs, web applications, authentication, authorization, tenancy, realtime systems, messaging, dashboards, administration |
+| **Developer Platforms** | project foundations, repository automation, CLIs, local environments, code quality, migration and upgrade tooling |
+| **Infrastructure & SRE** | containers, deployment, HA patterns, health checks, observability, backup/recovery, provisioning, runbooks |
+| **Security Engineering** | secure defaults, trust boundaries, isolation, SAST, dependency security, regression tests, auditability, release gates |
+| **Data Platforms** | PostgreSQL, durable state, queues, event systems, analytics, migrations, audit logs, lifecycle and recovery controls |
+| **Automation** | installation, testing, releases, maintenance, dependency updates, deployment, rollback, health and operational verification |
 
-We explore and build systems around modern AI-assisted software workflows, including:
+### AI & Agentic Engineering
 
-- AI application backends and interfaces
-- agent orchestration and multi-agent workflows
-- retrieval-augmented generation (RAG)
-- model/provider abstraction
-- tool and action execution
-- context and memory systems
-- AI-assisted coding and engineering workflows
-- evaluation, observability, and guardrails
-- automation pipelines for research, operations, and content workflows
+AI features are treated as production capabilities rather than opaque add-ons. We aim for systems whose AI behavior is observable, permission-aware, auditable for important actions, separable from deterministic business rules, testable through evaluations and regression sets, resilient to model/provider changes, and safe to disable or degrade.
 
-The goal is not only to add AI features, but to build **governed, observable, testable, and maintainable AI capabilities** that integrate cleanly with production systems.
+Agentic workflows should have explicit boundaries for tools, filesystem and network access, secrets, approvals, data mutation, execution time, concurrency, retries, task ownership, and audit history. Human approval remains appropriate wherever an action crosses a meaningful risk boundary.
 
-### Web & Application Platforms
+### Application & Platform Engineering
 
-We build full-stack platforms and reusable foundations for:
-
-- APIs and backend services
-- modern web applications
-- authentication and authorization
-- tenant-aware systems
-- dashboards and operational consoles
-- real-time features
-- messaging and collaboration workflows
-- billing and commercial platform capabilities
-- administration and internal tooling
-- secure data access and lifecycle management
-
-### Developer Platforms & Tooling
-
-We invest in tools that improve the engineering lifecycle:
-
-- project templates and reusable starters
-- repository automation
-- CI/CD foundations
-- code quality automation
-- security scanning and policy enforcement
-- release automation
-- environment bootstrap tooling
-- CLI workflows
-- local developer environments
-- test and validation harnesses
-- migration and upgrade tooling
+Application foundations may include APIs, modern web clients, authentication and sessions, deny-by-default authorization, tenant isolation, realtime communication, messaging, administrative surfaces, billing/commercial capabilities, and secure data lifecycle management.
 
 ### Infrastructure, DevOps & SRE
 
-Our infrastructure work aims to make systems reproducible and operable:
-
-- containerized services
-- infrastructure automation
-- deployment workflows
-- service health and readiness checks
-- high availability patterns
-- backup and recovery workflows
-- observability stacks
-- metrics, logs, and tracing
-- operational runbooks
-- zero/low-downtime deployment strategies
-- capacity and reliability planning
-- automated environment provisioning
+Infrastructure should be reproducible and operable. We design toward containerized workloads, automated environments, health/readiness checks, deployment and rollback procedures, high-availability patterns where justified, structured telemetry, tested backups, recovery workflows, capacity awareness, and incident-ready runbooks.
 
 ### Security Engineering
 
-Security is treated as an engineering property, not a final checklist.
-
-Common areas of focus include:
-
-- secure authentication and session handling
-- authorization and tenant isolation
-- server-side input validation
-- injection prevention
-- CSRF/XSS defenses
-- secrets management
-- secure defaults
-- dependency and supply-chain security
-- static analysis and code scanning
-- security regression tests
-- audit logging
-- privileged-action governance
-- filesystem/workspace containment
-- least-privilege infrastructure design
-- release security gates
-
-### Data & Platform Foundations
-
-We design data systems with explicit ownership, durability, and migration paths:
-
-- PostgreSQL-backed application state
-- structured metadata stores
-- caching and queueing
-- event-driven architecture
-- analytics pipelines
-- durable job processing
-- audit/event logs
-- data lifecycle controls
-- backup and restore validation
-- schema migration workflows
-- service-backed regression testing
+Security is an engineering property. Typical controls include strong authentication, server-side authorization, tenant isolation, strict input validation, parameterized data access, CSRF/XSS defenses, secrets management, supply-chain controls, static analysis, dependency scanning, security regression tests, audit logging, workspace/filesystem containment, least privilege, and release security gates.
 
 ---
 
 ## Engineering Principles
 
-### 1. Security by Default
+### 1. Secure by Default
 
-Every external input, identity boundary, privileged operation, and data-changing action should have an explicit security model.
+Every identity boundary, external input, privileged operation, and data-changing action needs an explicit security model. Prefer deny-by-default authorization, validated input, server-side enforcement, least privilege, isolated workloads, auditable mutations, and fail-closed behavior for security-sensitive paths.
 
-We prefer:
+### 2. Evidence Before Confidence
 
-- deny-by-default authorization
-- validated and normalized input
-- parameterized data access
-- server-side enforcement
-- least privilege
-- explicit audit trails
-- isolated workloads
-- fail-closed behavior for security-sensitive paths
+A build being green is useful only when its checks represent real risk. Tests and release evidence should cover meaningful contracts: correctness, authorization, isolation, persistence, compatibility, installation, migrations, security, end-to-end behavior, and recovery where applicable.
 
-### 2. Test the Behavior That Matters
+### 3. Bounded Delivery
 
-Tests should cover the contracts that protect users and operators, not only implementation details.
+Large roadmaps should become small, reviewable slices. A bounded change identifies exactly what changes, what must remain unchanged, which trust boundaries are involved, what proves correctness, what operational evidence is required, and what remains intentionally deferred.
 
-Depending on the project, this may include:
+### 4. Automate Repeated Work
 
-- unit tests
-- API tests
-- integration tests
-- service-backed database tests
-- security regression tests
-- end-to-end tests
-- installer validation
-- migration tests
-- compatibility tests
-- release verification
+Installation, environment setup, formatting, linting, dependency maintenance, security scanning, testing, packaging, releases, deployment, rollback, backups, health checks, and verification should become reproducible as a project matures.
 
-Where practical, we prefer **test-driven development for bounded changes**: define the expected behavior first, observe the failure, implement the smallest correct change, and rerun the relevant evidence.
+### 5. Preserve Clear Ownership
 
-### 3. Automate Repeated Work
+Keep boundaries explicit between authentication and authorization, reads and writes, durable and cache state, application and infrastructure, user and privileged operations, production and rollback stores, service contracts and implementations, and core functionality versus optional integrations.
 
-If a task must be performed repeatedly, it should become increasingly reproducible.
+### 6. Design for Failure
 
-Typical automation targets include:
+Production systems need explicit timeouts, bounded retries, idempotency where practical, transactional updates, graceful degradation, migration safety, tested recovery, controlled startup/shutdown, actionable telemetry, and rollback or forward-fix strategies.
 
-- installation
-- environment setup
-- linting and formatting
-- dependency updates
-- security scanning
-- testing
-- release preparation
-- deployment
-- rollback
-- backups
-- health checks
-- operational verification
+### 7. Documentation Is Part of the Product
 
-### 4. Preserve Clear Boundaries
-
-Large systems remain maintainable when responsibility is explicit.
-
-We aim for clear boundaries between:
-
-- application and infrastructure
-- authentication and authorization
-- read and write paths
-- user-facing and privileged operations
-- durable and cache state
-- production and rollback stores
-- service contracts and implementation details
-- core platform code and optional integrations
-
-### 5. Prefer Bounded Delivery
-
-Large roadmaps are broken into reviewable slices with explicit acceptance criteria.
-
-A bounded change should ideally answer:
-
-- What exact behavior changes?
-- What must remain unchanged?
-- What security boundaries are involved?
-- What tests prove the change?
-- What operational evidence is required?
-- What is intentionally deferred?
-
-### 6. Build for Operations
-
-Production readiness includes more than successful compilation or deployment.
-
-We consider:
-
-- health checks
-- telemetry
-- failure modes
-- retries and backoff
-- timeouts
-- graceful degradation
-- rollback
-- migration safety
-- backup and recovery
-- incident visibility
-- runbooks
-- ownership
+A maintainer should be able to discover purpose, setup, configuration, architecture, security boundaries, testing, deployment, operations, troubleshooting, contribution rules, release state, and known incomplete work without reverse-engineering the repository.
 
 ---
 
-## Secure Software Delivery Lifecycle
-
-A typical ZeaZDev project aims to move through a lifecycle similar to:
+## End-to-End Engineering Lifecycle
 
 ```text
-Idea / Requirement
-      ↓
-Architecture & Threat Boundaries
-      ↓
-Bounded Implementation Plan
-      ↓
-Tests / Security Expectations
-      ↓
-Implementation
-      ↓
-Lint / Type / Unit / Integration Checks
-      ↓
-SAST / Dependency / Supply-Chain Scans
-      ↓
-Service-Backed / E2E Verification
-      ↓
-Review
-      ↓
-Release Evidence
-      ↓
-Deployment
-      ↓
-Observability / Operations / Feedback
+Idea / User Need
+       │
+       ▼
+Requirements + Acceptance Criteria
+       │
+       ▼
+Architecture + Data Ownership + Threat Boundaries
+       │
+       ▼
+Bounded Execution Plan
+       │
+       ▼
+Tests / Security Expectations / Failure Cases
+       │
+       ▼
+Minimal Implementation
+       │
+       ├──► Lint / Format / Type Checks
+       ├──► Unit / Integration / Service Tests
+       ├──► Security / Dependency / Supply-Chain Scans
+       └──► E2E / Installer / Migration Verification
+       │
+       ▼
+Review + Exact-Head CI Evidence
+       │
+       ▼
+Release Evidence + Artifacts + SBOM/Provenance where applicable
+       │
+       ▼
+Controlled Deployment
+       │
+       ▼
+Health / Metrics / Logs / Traces / Audit Events
+       │
+       ▼
+Operations + Backup + Recovery + Feedback
+       │
+       └──────────────► Next bounded improvement
 ```
 
-The exact pipeline differs by repository, but the principle is consistent: **changes should produce evidence**.
+Where practical, bounded behavior changes use test-driven development: define expected behavior, observe the relevant failure, implement the smallest correct change, then rerun the evidence that protects the changed boundary.
 
 ---
 
-## CI/CD Expectations
+## Architecture Philosophy
 
-Projects may use different languages and stacks, but mature repositories should progressively converge on automated checks such as:
+We do not prescribe one architecture for every project. Patterns may include modular monoliths, API-first systems, service-oriented architectures, event-driven systems, worker/queue architectures, multi-agent orchestration, CQRS where justified, PostgreSQL-centered durable state, browser/API applications, CLI automation, containers, and infrastructure as code.
 
-| Area | Typical checks |
+The default is the **simplest architecture that satisfies current security, reliability, scale, data, and operational constraints while preserving a credible migration path**.
+
+### Architecture Decision Checklist
+
+Before introducing a major component or boundary, consider ownership, failure behavior, consistency requirements, security implications, deployment independence, observability, rollback, migration cost, operational burden, and whether the complexity solves a demonstrated requirement.
+
+---
+
+## Security Model
+
+Security-sensitive systems should reason explicitly about:
+
+```text
+Identity
+  ↓
+Authentication
+  ↓
+Session / Token Boundary
+  ↓
+Authorization ──────► Tenant / Resource Scope
+  ↓
+Validation
+  ↓
+Business Operation
+  ↓
+Durable Data Mutation
+  ↓
+Audit Event / Telemetry
+```
+
+Important expectations include no trust in client-side authorization, no secret material committed to source, no dynamic SQL or shell construction from untrusted data, explicit tenant/resource scoping, protected privileged actions, safe error handling, dependency and supply-chain review, and security regression coverage for fixed vulnerabilities.
+
+### Vulnerability Reporting
+
+Do not publicly disclose an exploitable vulnerability before maintainers have had a reasonable opportunity to assess it. For a specific project, check its `SECURITY.md` and prefer GitHub private vulnerability reporting when enabled. Reports should contain safe reproduction details, affected versions or commits, impact, and a minimal proof of concept when appropriate; never include real production credentials or sensitive customer data.
+
+---
+
+## AI Governance & Safety
+
+Production AI introduces non-determinism and external dependencies. Systems should distinguish AI suggestions from authoritative business decisions and define which operations require deterministic validation or human approval.
+
+For AI/agent workloads, consider prompt/data trust, tool permissions, retrieval boundaries, model/provider availability, output validation, sensitive-data handling, cost/usage limits, rate limits, timeout and cancellation behavior, evaluation sets, auditability, fallback behavior, and protection against unintended data mutation.
+
+---
+
+## Data Engineering Principles
+
+Durable state should have explicit ownership. Systems should document the authoritative store, transaction boundaries, schema migration path, retention/lifecycle expectations, backup policy, restore procedure, and behavior when dependencies are unavailable.
+
+When replacing or migrating storage backends, tests should prove both the new behavior and that legacy/rollback stores are not silently mutated when they no longer own the operation.
+
+---
+
+## CI/CD Quality Gates
+
+| Gate | Typical evidence |
 | --- | --- |
-| Code quality | formatting, linting, type checks |
-| Correctness | unit and integration tests |
-| Security | SAST, dependency scanning, secret scanning, policy checks |
-| Compatibility | supported runtime and platform matrices |
-| Packaging | build, artifact, image, or package validation |
-| Infrastructure | configuration and deployment validation |
-| End-to-end | critical user and operator workflows |
-| Release | changelog, versioning, SBOM/provenance where applicable |
-| Operations | health, migration, backup, restore, smoke verification |
+| **Quality** | formatting, linting, static typing |
+| **Correctness** | unit, API, integration, service-backed tests |
+| **Security** | SAST, dependency audit, secret scanning, policy/invariant tests |
+| **Compatibility** | supported runtime, OS and dependency matrices |
+| **Packaging** | application/package/image build validation |
+| **Infrastructure** | configuration, manifests and deployment validation |
+| **Data** | migration, persistence and rollback verification |
+| **End-to-End** | critical user/operator workflows |
+| **Release** | versioning, changelog, artifacts, SBOM/provenance where applicable |
+| **Operations** | smoke tests, health, backup/restore and rollback evidence |
 
-A green pipeline is meaningful only when the checks represent real project risks, so we prefer high-signal gates over decorative automation.
-
----
-
-## Architecture Approach
-
-We do not force every project into one architecture. We choose structures based on system requirements and operational constraints.
-
-Patterns may include:
-
-- modular monoliths
-- service-oriented architectures
-- API-first systems
-- event-driven systems
-- worker/queue architectures
-- multi-agent orchestration
-- CQRS where justified
-- PostgreSQL-centered durable state
-- containerized services
-- browser + API applications
-- CLI-driven automation
-- infrastructure-as-code
-
-The default preference is the **simplest architecture that can satisfy the current reliability, security, scale, and team constraints** while leaving a clean migration path.
+For production-critical or security-sensitive changes, merge decisions should be based on the **exact pull-request head** and its current required evidence rather than an older successful run.
 
 ---
 
-## AI Engineering Principles
+## Repository Baseline
 
-AI-enabled systems require additional controls beyond traditional application development.
-
-We aim to make AI behavior:
-
-- observable
-- permission-aware
-- constrained by explicit tools and capabilities
-- auditable for important actions
-- separable from deterministic business rules
-- testable through evaluations and regression sets
-- resilient to provider/model changes
-- safe to disable or degrade when dependencies fail
-
-For agentic workflows, we prefer explicit boundaries around:
-
-- available tools
-- filesystem access
-- network access
-- secrets
-- approval requirements
-- data mutation
-- execution timeouts
-- concurrency
-- retries
-- task ownership
-- audit history
-
----
-
-## Repository Quality Baseline
-
-Where appropriate, production-oriented repositories should include or evolve toward:
+Not every repository needs every artifact, but mature production-oriented projects should evolve toward a discoverable structure such as:
 
 ```text
 .
@@ -350,288 +226,198 @@ Where appropriate, production-oriented repositories should include or evolve tow
 ├── LICENSE
 ├── SECURITY.md
 ├── CONTRIBUTING.md
+├── CODE_OF_CONDUCT.md
 ├── CHANGELOG.md
 ├── docs/
-├── src/ or packages/
+│   ├── architecture/
+│   ├── operations/
+│   ├── security/
+│   └── decisions/
+├── src/ and/or packages/
 ├── tests/
 ├── scripts/
-├── .github/
-│   ├── workflows/
-│   ├── ISSUE_TEMPLATE/
-│   └── PULL_REQUEST_TEMPLATE.md
-├── container / deployment configuration
-└── environment examples and operational documentation
+├── deployment/ or infra/
+├── .env.example
+└── .github/
+    ├── workflows/
+    ├── ISSUE_TEMPLATE/
+    ├── PULL_REQUEST_TEMPLATE.md
+    ├── CODEOWNERS
+    └── dependabot.yml
 ```
 
-Not every repository needs every file, but ownership, setup, testing, security, and release behavior should be discoverable.
+### Documentation Baseline
+
+A project README or linked documentation should answer: what the project is, why it exists, current maturity/status, prerequisites, local setup, configuration, testing, architecture, security boundaries, deployment, troubleshooting, contribution workflow, release process, and what remains incomplete.
+
+For larger initiatives, use architecture records, execution plans, implementation checklists, runbooks, migration plans, threat models, release-readiness evidence, and operational ownership documentation where useful.
 
 ---
 
-## Documentation Philosophy
+## Pull Request Standard
 
-Documentation is part of the product.
+A strong pull request explains the problem, bounded scope, implementation, intentionally unchanged behavior, security implications, data/migration implications, compatibility impact, tests executed, manual verification, UI evidence where relevant, operational considerations, rollback implications, and follow-up work that is outside the slice.
 
-Good project documentation should help a contributor or operator answer:
-
-1. What is this project?
-2. Why does it exist?
-3. How do I run it locally?
-4. How do I test it?
-5. How is it configured?
-6. What are the security boundaries?
-7. How is it deployed?
-8. How do I diagnose failures?
-9. How do I contribute safely?
-10. What remains incomplete?
-
-For larger systems, we also favor explicit execution plans, architecture documents, implementation checklists, operational runbooks, and release-readiness evidence.
+Review should favor correctness and evidence over churn. Unrelated refactoring should normally remain outside a bounded security or reliability fix unless it is required to make the fix safe.
 
 ---
 
-## Contribution Model
+## Dependency & Supply-Chain Policy
 
-Contributions should be focused, reviewable, and supported by evidence.
+Dependencies should be treated as production inputs. Mature repositories should progressively adopt automated update proposals, vulnerability scanning, lockfile integrity, supported-version policies, compatibility testing, transitive-risk review for critical components, artifact integrity, least-privilege CI credentials, pinned or controlled automation dependencies, SBOMs where valuable, and provenance/signing where the release model justifies it.
 
-A strong contribution generally:
-
-1. identifies the exact problem or bounded change;
-2. preserves unrelated behavior;
-3. includes tests for changed behavior;
-4. considers security and failure modes;
-5. updates documentation when contracts or operations change;
-6. passes repository-required CI and security gates;
-7. avoids unnecessary scope expansion.
-
-Before contributing, review the target repository's own `CONTRIBUTING.md`, `SECURITY.md`, issue templates, pull request template, and workflow requirements when available.
-
----
-
-## Pull Request Guidelines
-
-A useful pull request description should explain:
-
-- the problem being solved;
-- what changed;
-- what deliberately did not change;
-- security implications;
-- migration or compatibility implications;
-- tests executed;
-- manual verification performed;
-- screenshots or evidence when UI behavior changes;
-- follow-up work that remains outside the current scope.
-
-For security-sensitive or production-critical work, merge decisions should be based on the **exact PR head and its current CI/security evidence**.
-
----
-
-## Security Reporting
-
-Please do **not** disclose exploitable vulnerabilities publicly before maintainers have had a reasonable opportunity to assess them.
-
-For a specific project:
-
-1. Check that repository's `SECURITY.md`.
-2. Prefer GitHub's private vulnerability reporting feature when enabled.
-3. Include reproduction details, affected versions/commits, impact, and a minimal proof of concept when safe to provide.
-4. Avoid including real secrets, production credentials, or sensitive customer information.
-
----
-
-## Technology
-
-Our repositories may use different technologies based on project needs. Common categories include:
-
-- Python and API frameworks
-- TypeScript / JavaScript
-- React and modern web tooling
-- SQL and PostgreSQL
-- containers and Docker-compatible runtimes
-- Linux automation
-- PowerShell and shell scripting
-- GitHub Actions
-- infrastructure and deployment tooling
-- AI/ML model integrations
-- observability systems
-
-Technology choice is secondary to maintainability, security, operability, and fit for purpose.
-
----
-
-## Production Readiness
-
-We treat “production ready” as an evidence-backed state rather than a label.
-
-Depending on the system, readiness may require:
-
-- required features complete for the release scope
-- critical tests passing
-- security gates passing
-- migrations validated
-- rollback documented and tested
-- secrets externalized
-- backups configured
-- restore procedure verified
-- monitoring and alerting available
-- capacity assumptions documented
-- failure paths exercised
-- dependency risks reviewed
-- runbooks available
-- release artifacts reproducible
-- operational ownership clear
-
-A project can be useful before reaching this level; documentation should clearly distinguish **experimental**, **development**, **release candidate**, and **production-ready** states where relevant.
-
----
-
-## Open Source & Licensing
-
-Each repository defines its own license and reuse terms. Always review the repository's `LICENSE` file before copying, redistributing, embedding, or creating derivative works.
-
-When incorporating third-party software, preserve required copyright, license, attribution, and notice files.
-
----
-
-## Responsible Dependency Management
-
-Dependencies are continuously changing, so mature projects should automate as much dependency hygiene as practical:
-
-- automated dependency update proposals
-- vulnerability scanning
-- lockfile consistency
-- supported-version policies
-- compatibility testing
-- transitive dependency review for high-risk components
-- controlled upgrade windows for breaking changes
-
-Updates should not be merged solely because they are newer; they should preserve compatibility and pass the project evidence gates.
+A dependency update is not ready merely because it is newer; it must preserve the repository's contracts and evidence gates.
 
 ---
 
 ## Observability
 
-For production systems, observability should answer:
+Production observability should help answer: Is the service available? Is it correct? Is latency or capacity degrading? Which dependency is failing? Which workload is affected? What changed before the incident? Can operators diagnose the problem without attaching a debugger to production?
 
-- Is the service available?
-- Is it behaving correctly?
-- Is performance degrading?
-- Which dependency is failing?
-- Which tenant/user/workload is affected?
-- What changed before the incident?
-- Can operators diagnose the issue without attaching a debugger to production?
-
-Useful signals may include metrics, structured logs, distributed traces, audit events, health endpoints, synthetic checks, and release/deployment metadata.
+Useful signals include structured logs, metrics, distributed traces, health/readiness endpoints, audit events, synthetic checks, queue/job telemetry, database health, release/deployment metadata, and alerting tied to actionable service objectives.
 
 ---
 
-## Reliability & Recovery
+## Reliability, Backup & Recovery
 
-Reliable software assumes failures will occur.
+Reliable software assumes failures will occur. Depending on criticality, projects should define recovery objectives, backup scope and frequency, restore verification, migration rollback or forward-fix procedures, disaster scenarios, dependency failure behavior, queue durability, retry policy, idempotency, graceful shutdown, health semantics, incident response, and post-incident learning.
 
-We design toward:
-
-- explicit timeouts
-- bounded retries
-- idempotent operations where possible
-- queue durability
-- graceful failure
-- transactional data changes
-- migration rollback or forward-fix plans
-- tested backups
-- restore validation
-- health checks
-- controlled startup/shutdown
-- incident-friendly logging
+A backup that has never been restored is incomplete evidence of recoverability.
 
 ---
 
-## Roadmap Philosophy
+## Release Maturity
 
-Roadmaps should make progress measurable without hiding incomplete work.
+We prefer explicit maturity labels rather than calling every working build production ready.
 
-We prefer roadmap items that distinguish:
+| Stage | Meaning |
+| --- | --- |
+| **Experimental** | exploration; contracts may change freely |
+| **Development** | active implementation; major gaps may remain |
+| **Alpha/Beta** | usable for evaluation with documented limitations |
+| **Release Candidate** | intended release scope complete; final evidence underway |
+| **Production Ready** | required correctness, security, operations and recovery evidence satisfied for the defined scope |
+| **Maintained** | released and actively supported within a documented policy |
+| **Archived** | no longer actively developed; status and migration guidance should be clear |
 
-- planned
-- active
-- blocked
-- completed
-- deferred
-- intentionally out of scope
+“Production ready” is an evidence-backed state, not a marketing label.
 
-Large initiatives should be decomposed into bounded slices so that each merged change leaves the system in a coherent state.
+---
+
+## Production Readiness Checklist
+
+A release may require, depending on its risk profile:
+
+- scoped functionality complete and documented;
+- required CI/security checks green on the intended release head;
+- authentication, authorization and tenant boundaries verified;
+- migrations tested against realistic services/data;
+- secrets externalized and least privilege applied;
+- dependency risks reviewed;
+- artifacts reproducible;
+- rollback or forward-fix path documented;
+- monitoring, health and alerting available;
+- backup and restore validated;
+- critical failure paths exercised;
+- capacity and timeout assumptions documented;
+- runbooks and ownership established;
+- release notes/changelog prepared;
+- SBOM/provenance produced when appropriate.
+
+---
+
+## Roadmaps & Execution
+
+Roadmaps should distinguish **planned**, **active**, **blocked**, **completed**, **deferred**, and **out of scope** work. They should not imply completion merely because adjacent foundations exist.
+
+Execution plans should identify the next highest-priority bounded incomplete item, acceptance criteria, protected behavior, dependencies, required tests, security implications, and explicit non-goals. Completion ledgers/checklists should reflect verified evidence rather than aspiration.
+
+---
+
+## Contribution Guide
+
+Contributions are welcome when a repository accepts them. Start by reading that project's README, `CONTRIBUTING.md`, `SECURITY.md`, issue/PR templates, architecture/status documentation, and required workflows.
+
+A good contribution is focused, preserves unrelated behavior, includes regression coverage, considers security and failure modes, updates affected documentation, passes required checks, and avoids widening scope without a clear reason.
+
+For substantial changes, open or reference an issue/design discussion when the repository's process requests one.
 
 ---
 
 ## Community Standards
 
-We want technical discussion to be direct, evidence-based, and respectful.
-
-Healthy collaboration includes:
-
-- clear problem statements
-- reproducible bug reports
-- reasoned technical disagreement
-- actionable review comments
-- acknowledgment of uncertainty
-- documentation of decisions
-- avoiding personal attacks or harassment
-
-Repository-specific codes of conduct take precedence where present.
+Technical collaboration should be direct, respectful, reproducible, and evidence-based. Healthy review includes clear problem statements, actionable feedback, reasoned disagreement, acknowledgment of uncertainty, documented decisions, and no harassment or personal attacks. Repository-specific codes of conduct take precedence where present.
 
 ---
 
-## Getting Started
+## Technology Strategy
 
-To explore ZeaZDev projects:
+Technology is selected for fit rather than branding. ZeaZDev projects may use Python, TypeScript/JavaScript, React and modern web tooling, SQL/PostgreSQL, container runtimes, Linux, PowerShell/shell automation, GitHub Actions, infrastructure/deployment tooling, AI/ML integrations, messaging/queue systems, and observability stacks.
 
-1. Browse the organization's public repositories.
-2. Read each project's README and status documentation.
-3. Review setup and environment requirements.
-4. Check open issues and pull requests for active work.
-5. Run the project's required tests before proposing changes.
-6. Follow repository-specific contribution and security guidance.
+The decision criteria remain maintainability, security, operability, ecosystem maturity, performance needs, team constraints, and migration cost.
 
 ---
 
-## For Maintainers
+## Maintainer Operating Model
 
-A healthy repository should make it easy to answer:
+A healthy repository should make these answers easy to find:
 
-- What is currently shipping?
-- What is the default branch?
-- What is the supported runtime matrix?
-- Which checks are required?
-- Where is the source of truth for roadmap/execution status?
-- Which security controls are mandatory?
-- What is the rollback path?
-- How is a release produced?
-- Who owns incidents and operations?
+| Question | Expected source of truth |
+| --- | --- |
+| What is shipping? | README / release documentation |
+| What is incomplete? | roadmap / execution plan / checklist |
+| What is supported? | compatibility/support policy |
+| What checks are mandatory? | CI workflows / branch rules / contributor docs |
+| What are the security boundaries? | SECURITY / architecture / threat documentation |
+| How is it released? | release docs / automated workflow |
+| How is it deployed? | deployment docs / infrastructure code |
+| How is it rolled back? | runbook / release procedure |
+| How is data recovered? | backup/restore runbook |
+| Who owns incidents? | operations/ownership documentation |
 
-We favor automation and documentation that keep those answers current.
+Automation should keep these answers current wherever possible.
+
+---
+
+## Suggested Repository Lifecycle
+
+```text
+Discover → Define → Design → Threat-model → Plan → Test → Build
+    → Verify → Review → Release → Deploy → Observe → Operate
+    → Recover → Learn → Improve
+```
+
+The lifecycle is intentionally circular. Production feedback should refine requirements, tests, architecture, automation, documentation, and future bounded work.
+
+---
+
+## Organization Navigation
+
+- **ZeaZDev:** https://github.com/ZeaZDev
+- **All repositories:** https://github.com/orgs/ZeaZDev/repositories
+- **Organization issues:** https://github.com/search?q=org%3AZeaZDev+is%3Aissue&type=issues
+- **Organization pull requests:** https://github.com/search?q=org%3AZeaZDev+is%3Apr&type=pullrequests
+
+As repositories become public and mature, project-specific status, architecture, documentation, releases, and contribution paths should remain authoritative over this organization-level overview.
 
 ---
 
 ## Current Direction
 
-ZeaZDev continues to focus on engineering systems that combine:
+ZeaZDev continues to focus on the intersection of:
 
-**AI + secure software engineering + automation + infrastructure + operational discipline + strong developer experience.**
+> **AI + secure software engineering + automation + durable data + infrastructure + operational discipline + developer experience.**
 
-The objective is not to maximize complexity. It is to create systems that are easier to build, verify, deploy, operate, improve, and trust.
-
----
-
-## Connect
-
-Explore the organization and its repositories on GitHub:
-
-- **Organization:** https://github.com/ZeaZDev
-- **Repositories:** https://github.com/orgs/ZeaZDev/repositories
-
-For project-specific questions, issues, contributions, or security guidance, use the relevant repository's documentation and GitHub issue/discussion channels where enabled.
+The objective is not maximum complexity. It is to create systems that are easier to understand, build, verify, deploy, operate, recover, improve, and trust.
 
 ---
 
-<p align="center">
-  <strong>ZeaZDev</strong><br>
-  Secure systems. Automated delivery. Production-minded engineering.
-</p>
+<div align="center">
+
+### Build deliberately. Verify continuously. Operate confidently.
+
+**ZeaZDev** — Secure systems. Intelligent automation. Production-minded engineering.
+
+[Explore ZeaZDev](https://github.com/ZeaZDev)
+
+</div>
